@@ -5,12 +5,4 @@ class MyTest {
 		var o = {};
 		Reflect.setProperty(o, 'test', 1);
 	}
-} 
- 
- 
- 
- 
- 
- 
- 
- 
+}
