@@ -1,6 +1,5 @@
 package util;
 
-import httpstatus.*;
 import haxe.macro.Context;
 import haxe.macro.Expr;
 using Lambda;
@@ -36,8 +35,8 @@ class ErrorMacro {
 				default: [macro $i{ctor.name}($a{args.map(function(arg) return macro $i{arg.name})})];
 			}
 			
-			var statusCode:HttpStatusCode = InternalServerError;
-			var statusMessage:HttpStatusMessage = statusCode;
+			var statusCode = 500;
+			var statusMessage = 'InternalServerError';
 			
 			switch ctor.meta.extract(':status') {
 				case []:
@@ -45,7 +44,7 @@ class ErrorMacro {
 				
 				case [{params:[_.getInt().sure() => code]}]:
 					statusCode = code;
-					statusMessage = statusCode;
+					// statusMessage = statusCode;
 				
 				case [{params:[_.getInt().sure() => code, _.getString().sure() => message]}]:
 					statusCode = code;
